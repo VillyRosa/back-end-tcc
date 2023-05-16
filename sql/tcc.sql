@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/04/2023 às 06:36
+-- Tempo de geração: 16/05/2023 às 05:07
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -95,14 +95,26 @@ INSERT INTO `materias` (`id_materias`, `nome_materias`, `professor_materias`, `i
 --
 
 CREATE TABLE `posts` (
-  `id_posts` int(11) NOT NULL,
-  `conteudo_posts` varchar(255) NOT NULL,
-  `datahora_posts` datetime NOT NULL,
-  `resposta_posts` varchar(5) NOT NULL,
-  `curtidas_posts` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `titulo_post` varchar(255) NOT NULL,
+  `conteudo_post` varchar(255) NOT NULL,
+  `datahora_post` datetime NOT NULL,
+  `respostas_post` varchar(5) NOT NULL,
+  `curtidas_post` int(11) NOT NULL,
   `id_materia` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `posts`
+--
+
+INSERT INTO `posts` (`id_post`, `titulo_post`, `conteudo_post`, `datahora_post`, `respostas_post`, `curtidas_post`, `id_materia`, `id_usuario`) VALUES
+(1, 'Teste dadadawdadaw', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su', '2023-05-04 05:51:34', '', 0, 26, 1),
+(2, 'Me da fuba.', 'Olá eu gostaria muito de um fubazinho.', '2023-05-16 03:56:21', '', 0, 29, 2),
+(3, 'Titulo', 'conteudoooooooooooooooooconteudoooooooooooooooo oconteudoooooo oooooooooooconteudooooooooooo ooooooconteudoooooooooooooooooconte udooo ooooooooooooo oconteudooo oooooooo  ', '2023-05-16 04:26:20', '', 0, 21, 2),
+(4, 'dawdaw', 'dawdawawdawda', '2023-05-16 04:27:55', '', 0, 35, 17),
+(5, 'xxxxxxxxxxxx', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx', '2023-05-16 04:28:07', '', 0, 21, 17);
 
 -- --------------------------------------------------------
 
@@ -148,7 +160,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_usuario`, `dataNascimento_usuario`, `foto_usuario`) VALUES
 (1, 'Villy Rosa', 'villyrosa69@gmail.com', '20baf5233671cd5e1edcf2e24fda154e86b6d2cf', '2003-05-05', ''),
-(2, 'Gustavo Scardovelli', 'gustavoscardovelli@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2003-05-20', '');
+(2, 'Gustavo Scardovelli', 'gustavoscardovelli@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2003-05-20', ''),
+(17, 'Joao', 'joaoa@ajoao.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2003-01-05', '');
 
 --
 -- Índices para tabelas despejadas
@@ -172,7 +185,7 @@ ALTER TABLE `materias`
 -- Índices de tabela `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id_posts`),
+  ADD PRIMARY KEY (`id_post`),
   ADD KEY `id_materia` (`id_materia`),
   ADD KEY `id_usuario` (`id_usuario`);
 
@@ -208,7 +221,7 @@ ALTER TABLE `materias`
 -- AUTO_INCREMENT de tabela `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_posts` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `semestre`
@@ -220,7 +233,7 @@ ALTER TABLE `semestre`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restrições para tabelas despejadas
@@ -230,7 +243,7 @@ ALTER TABLE `usuarios`
 -- Restrições para tabelas `anexos_posts`
 --
 ALTER TABLE `anexos_posts`
-  ADD CONSTRAINT `anexos_posts_ibfk_1` FOREIGN KEY (`id_posts`) REFERENCES `posts` (`id_posts`);
+  ADD CONSTRAINT `anexos_posts_ibfk_1` FOREIGN KEY (`id_posts`) REFERENCES `posts` (`id_post`);
 
 --
 -- Restrições para tabelas `materias`

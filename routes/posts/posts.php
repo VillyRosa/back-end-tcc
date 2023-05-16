@@ -20,6 +20,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $convert = json_decode($json, true);
                 array_push($data, [
                     'id_post' => $line['id_post'],
+                    'titulo_post' => $line['titulo_post'],
                     'conteudo_post' => $line['conteudo_post'],
                     'datahora_post' => $line['datahora_post'],
                     'curtidas_post' => $line['curtidas_post'],
